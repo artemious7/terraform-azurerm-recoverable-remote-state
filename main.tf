@@ -1,3 +1,9 @@
+# The "naming" module ensures unique Azure Cloud Adoption Framework-compliant names for the resources.
+module "naming" {
+  source = "Azure/naming/azurerm"
+  suffix = [var.name_suffix]
+}
+
 locals {
   storage_account_name = module.naming.storage_account.name_unique
   container_name = module.naming.storage_container.name
