@@ -21,3 +21,9 @@ variable "retention" {
   type = number
   default = 7
 }
+
+variable "blob_name" {
+  description = "Blob name of the Terraform state file. The convention is to use the .tfstate extension. This variable is only used in the output to provide a default value."
+  type = string
+  default = ".tfstate"
+}
