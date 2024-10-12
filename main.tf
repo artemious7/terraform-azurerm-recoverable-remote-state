@@ -52,3 +52,5 @@ resource "azurerm_storage_container" "this" {
   storage_account_name = azurerm_storage_account.this.name
   name = local.container_name
 }
+
+# todo: resource lock
