@@ -20,3 +20,9 @@ variable "name_suffix" {
   type        = string
   default     = "terraformstate"
 }
+
+variable "retention" {
+  description = "Retention in days."
+  type = number
+  default = 7
+}

@@ -28,16 +28,16 @@ resource "azurerm_storage_account" "this" {
   blob_properties {
     versioning_enabled = true
     container_delete_retention_policy {
-      days = 7
+      days = var.retention
     }
     delete_retention_policy {
-      days = 7
+      days = var.retention
     }
   }
 
   share_properties {
     retention_policy {
-      days = 7
+      days = var.retention
     }
   }
 }
