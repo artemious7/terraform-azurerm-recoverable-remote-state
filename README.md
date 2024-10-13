@@ -4,7 +4,7 @@ This is a Terraform module that creates an Azure storage account and a blob cont
 
 Terraform [recommends](https://developer.hashicorp.com/terraform/language/backend/s3#main) enabling versioning on the remote backend to allow for state recovery in the case of accidental deletions and human error.
 
-# Usage
+# Usage - create the backend
 
 ```hcl
 terraform {
@@ -46,5 +46,22 @@ output "storage_account_name" {
 
 output "container_name" {
   value = module.backend.blob_container_name
+}
+
+output "blob_name" {
+  value = module.backend.blob_name
+}
+```
+
+# Usage - specify the backend
+
+```hcl
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "<my-resource-group>"                 
+    storage_account_name = "<storage_account_name from output>"  
+    container_name       = "<container_name from output>"        
+    key                  = "<blob_name from output>"             
+  }
 }
 ```
