@@ -1,6 +1,8 @@
 # Azure recoverable remote state Terraform module
 
-Terraform module that creates an Azure storage account and a blob container to be used as a remote backend for Terraform state. It is recoverable thanks to soft-delete, versioning, and a resource lock to prevent accidental deletion and modifications.
+This is a Terraform module that creates an Azure storage account and a blob container to be used as a remote backend for Terraform state. The state is recoverable thanks to the soft-delete feature, versioning, and a resource lock to prevent accidental deletion and modifications.
+
+Terraform [recommends](https://developer.hashicorp.com/terraform/language/backend/s3#main) enabling versioning on the remote backend to allow for state recovery in the case of accidental deletions and human error.
 
 # Usage
 
