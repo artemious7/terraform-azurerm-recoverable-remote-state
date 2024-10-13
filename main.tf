@@ -6,7 +6,7 @@ module "naming" {
 
 locals {
   storage_account_name = module.naming.storage_account.name_unique
-  container_name = module.naming.storage_container.name
+  container_name       = module.naming.storage_container.name
 }
 
 data "azurerm_resource_group" "this" {
@@ -50,7 +50,13 @@ resource "azurerm_storage_account" "this" {
 
 resource "azurerm_storage_container" "this" {
   storage_account_name = azurerm_storage_account.this.name
-  name = local.container_name
+  name                 = local.container_name
 }
 
-# todo: resource lock
+resource "azurerm_management_lock" "this" {
+  count      = var.create_resource_lock ? 1 : 0
+  name       = "${data.azurerm_resource_group.this.name}-lock"
+  scope      = azurerm_storage_account.this.id
+  notes      = "Safeguards the Terraform state file. Accidental modifications and deletions are prevented, ensuring the integrity and security of the state file."
+  lock_level = "CanNotDelete"
+}

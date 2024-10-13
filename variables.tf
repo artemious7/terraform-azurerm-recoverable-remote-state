@@ -27,3 +27,9 @@ variable "blob_name" {
   type = string
   default = ".tfstate"
 }
+
+variable "create_resource_lock" {
+  description = "Create resource lock for the storage account?"
+  type = bool
+  default = true
+}
